@@ -37,7 +37,7 @@ app.configure(->
 require('./lib/yui-config').middleware app, 
     yuiBase: 'js'
 app.get '/', (req, res) ->
-    res.redirect '/test/mocha-yui-runner.html'
+    res.redirect '/mocha-yui-runner.html'
 #if(!module.parent)
 app.listen(port)
 console.log "Visit specs at http://localhost:#{app.address().port}"
