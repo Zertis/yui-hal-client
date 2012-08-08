@@ -14,7 +14,7 @@
         ,"yui": "latest"
     }
     ,"devDependencies" : {
-        ,"mocha": ">= 0.0.1"
+        "mocha": ">= 0.0.1"
         ,"should" : ">= 0.0.1"
         ,"sinon" : ">= 1.1.1"
         ,"chai": "https://github.com/chaijs/chai/tarball/master"
