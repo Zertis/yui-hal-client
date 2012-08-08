@@ -1,5 +1,5 @@
 {
-    "name" : "kobe-pos-mobile"
+    "name" : "yui-hal-client"
     ,"version" : "0.0.1"
     ,"engines": {
         "node": "0.6.x"
@@ -14,8 +14,6 @@
         ,"yui": "latest"
     }
     ,"devDependencies" : {
-        "jasmine-node" : ">= 0.0.1"
-        ,"long-stack-traces" : ">= 0.0.1"
         ,"mocha": ">= 0.0.1"
         ,"should" : ">= 0.0.1"
         ,"sinon" : ">= 1.1.1"

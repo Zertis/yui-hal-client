@@ -32,7 +32,6 @@ module.exports.middleware = (app) ->
             reqMods[name] =
                 fullpath: "/hal/#{name}.js"
         (modularize(req)) for req in reqs
-        console.log reqMods
         merged = Y.merge reqMods,
             hal: use: reqs
         cfg = 
@@ -40,6 +39,7 @@ module.exports.middleware = (app) ->
 
 
         res.header 'Content-Type', 'application/javascript'
+        #send a json object
         res.send "var halCfg = #{JSON.stringify cfg}"
 
     app.get '/hal/:script(*).js', (req, res, next) ->
