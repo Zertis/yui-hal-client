@@ -1,0 +1,25 @@
+{
+    "name" : "kobe-pos-mobile"
+    ,"version" : "0.0.1"
+    ,"engines": {
+        "node": "0.6.x"
+        ,"npm":  "1.0.x"
+    }
+    ,"dependencies" : {
+        "coffee-script": "latest"
+        ,"combohandler": "latest"
+        ,"express" : "2.x"
+        ,"findit": "latest"
+        ,"underscore": "latest"
+        ,"yui": "latest"
+    }
+    ,"devDependencies" : {
+        "jasmine-node" : ">= 0.0.1"
+        ,"long-stack-traces" : ">= 0.0.1"
+        ,"mocha": ">= 0.0.1"
+        ,"should" : ">= 0.0.1"
+        ,"sinon" : ">= 1.1.1"
+        ,"chai": "https://github.com/chaijs/chai/tarball/master"
+    }
+    ,"main" : "index.js"
+}
