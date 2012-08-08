@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
+        <script src="/hal/hal-cfg.js"></script>
+        <script>
+            YUI(halCfg).use('hal', 'node', function (Y)  {
+                    Y.on('domready', function () {
+                        console.log('hal', Y.hal.Resource);
+                    
+                    });
+                });
+
+        </script>
+    </head>
+</html>
+<body>
+
+    <header><h1>index</h1></header>
+    <p></p>
+</body>
+
