@@ -4,18 +4,7 @@ CoffeeScript = require 'coffee-script'
 fs = require 'fs'
 path = require 'path'
 compiled = {}
-
-
-module.exports.middleware = (app) ->
-    dirpath = path.join __dirname, '..', 'src'
-    files = fs.readdirSync dirpath
-    files.forEach (file) =>
-        filename = path.basename(file).replace(path.extname(file), '')
-        data = fs.readFileSync path.join(dirpath, file), 'utf8'
-        compiled[filename] = CoffeeScript.compile data,
-            filename: filename
-
-    app.get '/hal/hal-cfg.js', (req, res, next) ->
+module.exports.getCfg = getCfg = ->
         reqs = [
             'hal-command'
             'hal-command-resource'
@@ -34,10 +23,18 @@ module.exports.middleware = (app) ->
         (modularize(req)) for req in reqs
         merged = Y.merge reqMods,
             hal: use: reqs
-        cfg = 
-            modules: merged
+        return { modules: merged }
+module.exports.middleware = (app) ->
+    dirpath = path.join __dirname, '..', 'src'
+    files = fs.readdirSync dirpath
+    files.forEach (file) =>
+        filename = path.basename(file).replace(path.extname(file), '')
+        data = fs.readFileSync path.join(dirpath, file), 'utf8'
+        compiled[filename] = CoffeeScript.compile data,
+            filename: filename
 
-
+    app.get '/hal/hal-cfg.js', (req, res, next) ->
+        cfg = getCfg()
         res.header 'Content-Type', 'application/javascript'
         #send a json object
         res.send "var halCfg = #{JSON.stringify cfg}"
