@@ -1,1 +1,1 @@
-require('./lib/hal-client')
+module.exports = require('./lib/hal-client')
