@@ -23,12 +23,13 @@ YUI.add 'hal-resource-factory', (Y) ->
             def.url = @_urlFromHash def.url unless def.url?
             def.rels = def?.rels ? @get 'rels'
             def.href = def.url
-            def.linkParser = def.linkParser ? new Y.hal.LinkParser()
+            def.linkParser = def.linkParser ? @_getLinkParser()
             def
 
         _getLinkParser: ->
-            parser = new Y.hal.LinkParser()
-            original = parser.commandFn
+            parser = new Y.hal.LinkParser 
+                resourceFactory: @
+            parser
 
 
         _urlFromHash: (href) ->
