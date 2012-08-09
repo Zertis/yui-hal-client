@@ -1,5 +1,4 @@
 Y = require('yui').YUI({useSync:true}).use 'collection', 'oop'
-combo = require 'combohandler'
 CoffeeScript = require 'coffee-script'
 fs = require 'fs'
 path = require 'path'
