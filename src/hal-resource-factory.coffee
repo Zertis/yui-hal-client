@@ -40,6 +40,7 @@ YUI.add 'hal-resource-factory', (Y) ->
             lnk = new Y.hal.Link cfg
             lnk
         createCommand: (cfg = {}) ->
+            cmd.rels = cmd.rels ? @get('rels')
             cmd = new Y.hal.CommandResource cfg
             cmd.plug Y.hal.ResourceTraversalPlugin,
                 resourceFactory: @
