@@ -9,7 +9,8 @@ YUI.add 'spec-hal-command-resource', (Y) ->
 
             beforeEach ->
                 sut = new Y.hal.CommandResource
-                    linkParser: new Y.hal.LinkParser()
+                    linkParser: new Y.hal.LinkParser
+                        resourceFactory: new Y.hal.ResourceFactory()
                     rels: 
                         links: '*'
                 json = Y.JSON.stringify
@@ -26,14 +27,16 @@ YUI.add 'spec-hal-command-resource', (Y) ->
             it 'should use attrs from form node', ->
                 parsed.bite.should.equal 'me'
             it 'should parse links', ->
+                
                 sut.links.aRel.should.exist
                 sut.links.aRel.length.should.equal 1
                 sut.links.aRel[0].get('title').should.equal 'meh'
                 sut.links.aRel[0].get('href').should.equal '/some/where'
 
+
 , '', requires: [
     'hal-command-resource'   
     'hal-link-parser'
     'json'
-    'hal-resource-traversal-plugin'
+    'hal-resource-factory'
 ]

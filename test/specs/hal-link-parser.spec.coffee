@@ -5,6 +5,9 @@ YUI.add 'spec-hal-link-parser', (Y) ->
         sut = null
         rels = null
         response = null
+        resourceFactory = 
+            createLink: (cfg) -> new Y.hal.Link cfg
+            createCommand: (cfg) -> new Y.hal.CommandResource cfg
         beforeEach ->
             rels = 
                 commands: [ 'doThis', 'doThat' ]
@@ -37,6 +40,7 @@ YUI.add 'spec-hal-link-parser', (Y) ->
                         empty: []
                 sut = new Y.hal.LinkParser
                     rels: links: '*'
+                    resourceFactory: resourceFactory
 
                 @target = {}
                 sut.parseLinks @target, response
@@ -50,6 +54,7 @@ YUI.add 'spec-hal-link-parser', (Y) ->
                 sut = new Y.hal.LinkParser
                     rels: rels
                     filter: true
+                    resourceFactory: resourceFactory
                 sut.parseLinks @target, response
 
             it 'should set url based on self link', ->
@@ -72,6 +77,7 @@ YUI.add 'spec-hal-link-parser', (Y) ->
                     rels:
                         links: ['waiters']
                         commands: '*'
+                    resourceFactory: resourceFactory
                 sut.parseLinks @target, response
 
             it 'should set url based on self link', ->
@@ -94,6 +100,7 @@ YUI.add 'spec-hal-link-parser', (Y) ->
                     rels:
                         links: '*'
                         commands: ['doThis', 'doThat']
+                    resourceFactory: resourceFactory
                 sut.parseLinks @target, response
 
             it 'should set url based on self link', ->
@@ -125,6 +132,7 @@ YUI.add 'spec-hal-link-parser', (Y) ->
                 sut = new Y.hal.LinkParser
                     rels: rels
                     filter: true
+                    resourceFactory: resourceFactory
                 sut.parseLinks @target, response
 
             it 'should set url based on self link', ->
@@ -144,7 +152,8 @@ YUI.add 'spec-hal-link-parser', (Y) ->
             beforeEach ->
                 @target = {}
                 rels =  ['aCommand', 'anotherCommand']
-                sut = new Y.hal.LinkParser() 
+                sut = new Y.hal.LinkParser 
+                    resourceFactory: resourceFactory
                 _links = 
                     self: 
                         href: '/waiters'

@@ -26,9 +26,23 @@ YUI.add 'hal-resource-factory', (Y) ->
             def.linkParser = def.linkParser ? new Y.hal.LinkParser()
             def
 
+        _getLinkParser: ->
+            parser = new Y.hal.LinkParser()
+            original = parser.commandFn
+
+
         _urlFromHash: (href) ->
             href = location.hash unless href?
             "/#{href.replace routeStripper, ''}"
+
+        createLink: (cfg = {}) ->
+            lnk = new Y.hal.Link cfg
+            lnk
+        createCommand: (cfg = {}) ->
+            cmd = new Y.hal.CommandResource cfg
+            cmd.plug Y.hal.ResourceTraversalPlugin,
+                resourceFactory: @
+            cmd
 
 
         ###*

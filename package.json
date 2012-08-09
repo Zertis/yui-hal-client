@@ -1,23 +1,20 @@
 {
     "name" : "yui-hal-client"
-    ,"version" : "0.0.1"
+    ,"version" : "0.0.3"
     ,"engines": {
         "node": "0.6.x"
         ,"npm":  "1.x"
     }
     ,"dependencies" : {
         "coffee-script": "latest"
-        ,"combohandler": "latest"
-        ,"express" : "2.x"
         ,"findit": "latest"
         ,"underscore": "latest"
         ,"yui": "latest"
     }
     ,"devDependencies" : {
-        "mocha": ">= 0.0.1"
-        ,"should" : ">= 0.0.1"
-        ,"sinon" : ">= 1.1.1"
-        ,"chai": "https://github.com/chaijs/chai/tarball/master"
+        "express" : "2.x"
+        ,"mocha": ">= 0.0.1"
+        ,"chai": "latest"
     }
     ,"main" : "index.js"
 }

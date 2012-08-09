@@ -2,19 +2,15 @@ YUI.add 'hal-link-parser', (Y) ->
     LinkParser = ->
         LinkParser.superclass.constructor.apply @, arguments
     LinkParser.NAME = 'linkParser'
-    LinkParser.ATTRS = {}
+    LinkParser.ATTRS = 
+        resourceFactory: value: null
 
     isCommand = Y.hal.CommandResource.isCommandLink
         
     Y.extend LinkParser, Y.Base,
         initializer: (cfg) ->
-
             @rels = cfg?.rels ? @rels
             @_assertSelf()
-        linkFn: Y.hal.Link
-        commandFn: Y.hal.CommandResource
-        commands: {}
-        links: {}
         rels: 
             links: ['self']
             commands: []
@@ -97,8 +93,9 @@ YUI.add 'hal-link-parser', (Y) ->
                 delete eligibleLinks[rel] if isCommand(lnk)
             lnks = @mapLinks rels, eligibleLinks
             results = {}
+            resourceFactory = @get 'resourceFactory'
             Y.Array.each lnks, (lnk) =>
-                link = new @linkFn lnk
+                link =resourceFactory.createLink lnk
                 results[lnk.rel] = (results[lnk.rel]?=[]).concat [link]
             results
 
@@ -118,10 +115,11 @@ YUI.add 'hal-link-parser', (Y) ->
                 delete eligibleLinks[rel] unless isCommand(lnk)
             lnks = @mapLinks rels, eligibleLinks
             results = {}
+            resourceFactory = @get 'resourceFactory'
             Y.Array.each lnks, (lnk) =>
                 cfg = Y.merge lnk,
                     linkParser: @
-                cmd = new @commandFn cfg
+                cmd = resourceFactory.createCommand cfg
                 results[lnk.rel] = (results[lnk.rel]?=[]).concat [cmd]
             results
 

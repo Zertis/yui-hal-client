@@ -2,7 +2,8 @@ YUI.add 'spec-hal-resource', (Y) ->
 
     describe 'Resource', ->
         sut = null
-        linkParser = new Y.hal.LinkParser()
+        linkParser = new Y.hal.LinkParser
+            resourceFactory: new Y.hal.ResourceFactory()
         describe '#init', ->
             it 'should exist', ->
                 Y.hal.Resource.should.exist
@@ -163,4 +164,5 @@ YUI.add 'spec-hal-resource', (Y) ->
 , '', requires: [
     'hal-resource'
     'hal-link-parser'
+    'hal-resource-factory'
 ]
