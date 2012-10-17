@@ -23,7 +23,7 @@ YUI.add 'hal-command', (Y) ->
             Y.io thisUrl, 
                 method: 'GET'
                 headers:
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json'
                 data: options.data ? {}
                 on:
                     success: (tid, res) ->
